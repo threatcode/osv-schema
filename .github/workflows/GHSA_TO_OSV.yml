@@ -18,7 +18,10 @@ jobs:
     - name: Install pipenv
       run: |
         python3 -m pip install pipenv
-        pipenv sync
+        pipenv install --dev --skip-lock
+
+    - name: Generate Pipfile.lock
+      run: pipenv lock --dev --pre
 
     - name: Activate virtual environment
       run: |
