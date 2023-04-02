@@ -27,7 +27,7 @@ jobs:
     - name: Dump GHSA data
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: python3 tools/dump_ghsa.py --token $GITHUB_TOKEN out
+      run: python3 ./tools/dump_ghsa.py --token $GITHUB_TOKEN out
 
     - name: Create osv directory
       run: mkdir osv
