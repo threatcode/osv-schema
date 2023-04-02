@@ -27,10 +27,10 @@ jobs:
     - name: Dump GHSA data
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: python3 dump_ghsa.py --token $GITHUB_TOKEN out
+      run: python3 tools/dump_ghsa.py --token $GITHUB_TOKEN out
 
     - name: Create osv directory
       run: mkdir osv
 
     - name: Convert GHSA data to OSV format
-      run: pipenv run python3 convert_ghsa.py -o osv out/*.json
+      run: pipenv run tools/python3 convert_ghsa.py -o osv out/*.json
