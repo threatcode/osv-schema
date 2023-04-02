@@ -19,13 +19,7 @@ jobs:
       run: |
         python3 -m pip install pipenv
         pipenv install --dev --skip-lock
-
-    - name: Generate Pipfile.lock
-      run: pipenv lock --dev --pre
-
-    - name: Activate virtual environment
-      run: |
-        pipenv shell
+        pipenv lock --dev --pre
 
     - name: Create out directory
       run: mkdir out
@@ -39,4 +33,4 @@ jobs:
       run: mkdir osv
 
     - name: Convert GHSA data to OSV format
-      run: python3 convert_ghsa.py -o osv out/*.json
+      run: pipenv run python3 convert_ghsa.py -o osv out/*.json
