@@ -30,4 +30,4 @@ jobs:
       run: python3 tools/ghsa/dump_ghsa.py --token $GITHUB_TOKEN out
 
     - name: Create osv directory
-      run: mkdir osv
+      run: mkdir tools/ghsa/osv
