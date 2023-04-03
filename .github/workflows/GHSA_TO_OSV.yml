@@ -33,4 +33,4 @@ jobs:
       run: mkdir osv
 
     - name: Convert GHSA data to OSV format
-      run: pipenv run tools/ghsa/dump_ghsa.py convert_ghsa.py -o osv out/*.json
+      run: pipenv run tools/ghsa/dump_ghsa.py tools/ghsa/convert_ghsa.py -o osv out/*.json
