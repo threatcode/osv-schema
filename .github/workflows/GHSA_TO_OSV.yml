@@ -1,0 +1,33 @@
+name: GHSA to OSV
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Install pipenv
+      run: |
+        python3 -m pip install pipenv
+        pipenv install --dev --skip-lock
+        pipenv lock --dev --pre
+
+    - name: Create out directory
+      run: mkdir out
+
+    - name: Dump GHSA data
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: python3 tools/ghsa/dump_ghsa.py --token $GITHUB_TOKEN out
+
+    - name: Create osv directory
+      run: mkdir tools/ghsa/osv
